@@ -1,6 +1,8 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -12,6 +14,8 @@ namespace CRUDMONGODB_BDA
 {
     public partial class Form1 : Form
     {
+        IMongoCollection<usuarios> usuariosCollection;
+
         public Form1()
         {
             InitializeComponent();
@@ -19,7 +23,13 @@ namespace CRUDMONGODB_BDA
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            var connectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
+            var databaseName = MongoUrl.Create(connectionString).DatabaseName;
+            var mongoClient = new MongoClient(connectionString);
+            var database = mongoClient.GetDatabase(databaseName);
+            usuariosCollection = database.GetCollection<usuarios>("usuarios");
 
+            //LoadUsersData();
         }
     }
 }
