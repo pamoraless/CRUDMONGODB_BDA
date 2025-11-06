@@ -29,8 +29,11 @@ namespace CRUDMONGODB_BDA
         public DateTime FechaNacimientoUser { get; set; }
 
         [BsonElement("seguidores"), BsonRepresentation(BsonType.Int32)]
+        public int SeguidoresUser { get; set; }
+
+        [BsonElement("seguidos"), BsonRepresentation(BsonType.Int32)]
         public int SeguidosUser { get; set; }
-       
+
         [BsonElement("likes"), BsonRepresentation(BsonType.Int32)]
         public int LikesUser { get; set; }
 

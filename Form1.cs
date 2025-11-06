@@ -29,7 +29,15 @@ namespace CRUDMONGODB_BDA
             var database = mongoClient.GetDatabase(databaseName);
             usuariosCollection = database.GetCollection<usuarios>("usuarios");
 
-            //LoadUsersData();
+            LoadUsersData();
+        }
+
+        //Función para cargar los datos
+        private void LoadUsersData()
+        {
+            var filterDefinition = Builders<usuarios>.Filter.Empty;
+            var Usuarios = usuariosCollection.Find(filterDefinition).ToList();
+            GridViewUsers.DataSource = Usuarios;
         }
     }
 }
