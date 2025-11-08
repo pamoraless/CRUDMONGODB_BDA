@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CRUDMONGODB_BDA
 {
@@ -38,6 +39,29 @@ namespace CRUDMONGODB_BDA
             var filterDefinition = Builders<usuarios>.Filter.Empty;
             var Usuarios = usuariosCollection.Find(filterDefinition).ToList();
             GridViewUsers.DataSource = Usuarios;
+        }
+
+        private void CrearUsuario()
+        {
+            var usuario = new usuarios
+            {
+                NameUsuario = textName.Text,
+                UserName = textUsername.Text,
+                CorreoUser = textCorreo.Text,
+                PasswordUsuario = textContrasena.Text,
+                BioUser = textBio.Text,
+                FechaNacimientoUser = dateFechaNacimiento.Value,
+                SeguidoresUser = int.Parse(textSeguidores.Text),
+                SeguidosUser = int.Parse(textSeguidos.Text),
+                LikesUser = int.Parse(textLikes.Text),
+                PostsUser = int.Parse(textPosts.Text)
+            };
+
+            usuariosCollection.InsertOne(usuario);
+
+            MessageBox.Show("Usuario agregado con éxito!");
+
+            LoadUsersData();
         }
     }
 }
