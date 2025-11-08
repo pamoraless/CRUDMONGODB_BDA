@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.GridViewUsers = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.textName = new System.Windows.Forms.TextBox();
             this.textUsername = new System.Windows.Forms.TextBox();
@@ -52,7 +52,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.textLikes = new System.Windows.Forms.TextBox();
             this.textPosts = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textId = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewUsers)).BeginInit();
             this.SuspendLayout();
@@ -64,26 +64,29 @@
             this.GridViewUsers.Name = "GridViewUsers";
             this.GridViewUsers.Size = new System.Drawing.Size(1050, 276);
             this.GridViewUsers.TabIndex = 0;
+            this.GridViewUsers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewUsers_CellContentClick);
             // 
-            // button1
+            // btnAgregar
             // 
-            this.button1.AccessibleName = "btnAgregar";
-            this.button1.Location = new System.Drawing.Point(1002, 28);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Agregar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAgregar.AccessibleName = "btnAgregar";
+            this.btnAgregar.Location = new System.Drawing.Point(1002, 28);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregar.TabIndex = 1;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // button2
+            // btnEliminar
             // 
-            this.button2.AccessibleName = "btnEliminar";
-            this.button2.Location = new System.Drawing.Point(1002, 58);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Eliminar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnEliminar.AccessibleName = "btnEliminar";
+            this.btnEliminar.Location = new System.Drawing.Point(1002, 58);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.TabIndex = 2;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // button3
             // 
@@ -266,13 +269,13 @@
             this.textPosts.Size = new System.Drawing.Size(100, 20);
             this.textPosts.TabIndex = 25;
             // 
-            // textBox10
+            // textId
             // 
-            this.textBox10.AccessibleName = "textId";
-            this.textBox10.Location = new System.Drawing.Point(896, 30);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(100, 20);
-            this.textBox10.TabIndex = 26;
+            this.textId.AccessibleName = "textId";
+            this.textId.Location = new System.Drawing.Point(896, 30);
+            this.textId.Name = "textId";
+            this.textId.Size = new System.Drawing.Size(100, 20);
+            this.textId.TabIndex = 26;
             // 
             // label11
             // 
@@ -289,7 +292,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1117, 450);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.textBox10);
+            this.Controls.Add(this.textId);
             this.Controls.Add(this.textPosts);
             this.Controls.Add(this.textLikes);
             this.Controls.Add(this.label10);
@@ -311,8 +314,8 @@
             this.Controls.Add(this.textUsername);
             this.Controls.Add(this.textName);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.GridViewUsers);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -326,8 +329,8 @@
         #endregion
 
         private System.Windows.Forms.DataGridView GridViewUsers;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textName;
         private System.Windows.Forms.TextBox textUsername;
@@ -349,7 +352,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textLikes;
         private System.Windows.Forms.TextBox textPosts;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textId;
         private System.Windows.Forms.Label label11;
     }
 }

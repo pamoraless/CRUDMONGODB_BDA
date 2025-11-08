@@ -1,6 +1,7 @@
 ﻿using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CRUDMONGODB_BDA
@@ -62,6 +64,57 @@ namespace CRUDMONGODB_BDA
             MessageBox.Show("Usuario agregado con éxito!");
 
             LoadUsersData();
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            CrearUsuario();
+        }
+
+        private void EliminarUsuario()
+        {
+            try
+            {
+                string id = textId.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(id))
+                {
+                    MessageBox.Show("Ingrese el ID del usuario.");
+                    return;
+                }
+
+                var filter = Builders<usuarios>.Filter.Eq(u => u.UsuarioId, id);
+
+                var result = usuariosCollection.DeleteOne(filter);
+
+                if (result.DeletedCount > 0)
+                {
+                    MessageBox.Show("Usuario eliminado correctamente.");
+                    LoadUsersData();
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró usuario con ese ID.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            EliminarUsuario();
+        }
+
+        private void GridViewUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var id = GridViewUsers.Rows[e.RowIndex].Cells["UsuarioId"].Value.ToString();
+                textId.Text = id;
+            }
         }
     }
 }
