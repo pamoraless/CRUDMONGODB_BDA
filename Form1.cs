@@ -108,6 +108,74 @@ namespace CRUDMONGODB_BDA
             EliminarUsuario();
         }
 
+        private void EditarUsuario()
+        {
+            try
+            {
+                var id = textId.Text.Trim();
+                if (string.IsNullOrEmpty(id))
+                {
+                    MessageBox.Show("Debes ingresar el ID del usuario que deseas editar.");
+                    return;
+                }
+
+                var filter = Builders<usuarios>.Filter.Eq(u => u.UsuarioId, id);
+
+                var updateDef = Builders<usuarios>.Update;
+                var updates = new List<UpdateDefinition<usuarios>>();
+
+                if (!string.IsNullOrWhiteSpace(textName.Text))
+                    updates.Add(updateDef.Set(u => u.NameUsuario, textName.Text));
+
+                if (!string.IsNullOrWhiteSpace(textUsername.Text))
+                    updates.Add(updateDef.Set(u => u.UserName, textUsername.Text));
+
+                if (!string.IsNullOrWhiteSpace(textCorreo.Text))
+                    updates.Add(updateDef.Set(u => u.CorreoUser, textCorreo.Text));
+
+                if (!string.IsNullOrWhiteSpace(textContrasena.Text))
+                    updates.Add(updateDef.Set(u => u.PasswordUsuario, textContrasena.Text));
+
+                if (!string.IsNullOrWhiteSpace(textBio.Text))
+                    updates.Add(updateDef.Set(u => u.BioUser, textBio.Text));
+
+                // Fecha: siempre se actualiza
+                updates.Add(updateDef.Set(u => u.FechaNacimientoUser, dateFechaNacimiento.Value.Date));
+
+                if (!string.IsNullOrWhiteSpace(textSeguidores.Text))
+                    updates.Add(updateDef.Set(u => u.SeguidoresUser, int.Parse(textSeguidores.Text)));
+
+                if (!string.IsNullOrWhiteSpace(textSeguidos.Text))
+                    updates.Add(updateDef.Set(u => u.SeguidosUser, int.Parse(textSeguidos.Text)));
+
+                if (!string.IsNullOrWhiteSpace(textLikes.Text))
+                    updates.Add(updateDef.Set(u => u.LikesUser, int.Parse(textLikes.Text)));
+
+                if (!string.IsNullOrWhiteSpace(textPosts.Text))
+                    updates.Add(updateDef.Set(u => u.PostsUser, int.Parse(textPosts.Text)));
+
+                if (updates.Count == 0)
+                {
+                    MessageBox.Show("No hay campos para actualizar.");
+                    return;
+                }
+
+                var update = updateDef.Combine(updates);
+                usuariosCollection.UpdateOne(filter, update);
+
+                MessageBox.Show("Usuario actualizado correctamente.");
+                LoadUsersData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al editar usuario: " + ex.Message);
+            }
+        }
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            EditarUsuario();
+        }
+
         private void GridViewUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -116,5 +184,6 @@ namespace CRUDMONGODB_BDA
                 textId.Text = id;
             }
         }
+
     }
 }

@@ -31,7 +31,7 @@
             this.GridViewUsers = new System.Windows.Forms.DataGridView();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
             this.textName = new System.Windows.Forms.TextBox();
             this.textUsername = new System.Windows.Forms.TextBox();
             this.textCorreo = new System.Windows.Forms.TextBox();
@@ -88,15 +88,16 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // button3
+            // btnEditar
             // 
-            this.button3.AccessibleName = "btnEditar";
-            this.button3.Location = new System.Drawing.Point(1002, 88);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Editar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnEditar.AccessibleName = "btnEditar";
+            this.btnEditar.Location = new System.Drawing.Point(1002, 88);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(75, 23);
+            this.btnEditar.TabIndex = 3;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // textName
             // 
@@ -272,15 +273,15 @@
             // textId
             // 
             this.textId.AccessibleName = "textId";
-            this.textId.Location = new System.Drawing.Point(896, 30);
+            this.textId.Location = new System.Drawing.Point(784, 30);
             this.textId.Name = "textId";
-            this.textId.Size = new System.Drawing.Size(100, 20);
+            this.textId.Size = new System.Drawing.Size(212, 20);
             this.textId.TabIndex = 26;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(874, 34);
+            this.label11.Location = new System.Drawing.Point(762, 34);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(16, 13);
             this.label11.TabIndex = 27;
@@ -313,7 +314,7 @@
             this.Controls.Add(this.textCorreo);
             this.Controls.Add(this.textUsername);
             this.Controls.Add(this.textName);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.GridViewUsers);
@@ -331,7 +332,7 @@
         private System.Windows.Forms.DataGridView GridViewUsers;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.TextBox textName;
         private System.Windows.Forms.TextBox textUsername;
         private System.Windows.Forms.TextBox textCorreo;
